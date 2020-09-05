@@ -1,5 +1,5 @@
 # EasyBLEU
-One command to calculate [SacreBLEU](https://arxiv.org/pdf/1804.08771.pdf), [Token-BLEU](https://www.aclweb.org/anthology/P02-1040.pdf), [BLEU w/ compound splitting](https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf) for fairseq 
+One command to calculate [SacreBLEU](https://arxiv.org/pdf/1804.08771.pdf), [Token-BLEU](https://www.aclweb.org/anthology/P02-1040.pdf), [BLEU w/ compound splitting](https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf) for [fairseq](https://github.com/pytorch/fairseq)
 
 ## Dependencies
 ```sacrebleu >= 1.4.10```  
