@@ -11,8 +11,7 @@ One command to calculate [SacreBLEU](https://arxiv.org/pdf/1804.08771.pdf), [Tok
 ❱❱❱ ./BLEU.sh TESTSET SRCLANG TGTLANG GEN
 ```  
 specifically, 
-- ```TESTSET```  
-The available test sets are:  
+- ```TESTSET``` the available test sets are:  
 ```                 
                  wmt20/tworefs: WMT20 news test sets with two references
                      wmt20/dev: Development data for tasks new to 2020.
@@ -69,3 +68,20 @@ The available test sets are:
 - ```SRCLANG``` source language types, for example, ```en```
 - ```TGTLANG``` target language types, for example, ```de```
 - ```GEN``` decoding output of [fairseq](https://github.com/pytorch/fairseq)
+
+### Example
+```console
+❱❱❱ ./BLEU.sh wmt14/full en de gen.out
+>>>sacrebleu
+BLEU+case.mixed+lang.en-de+numrefs.1+smooth.exp+test.wmt14/full+tok.13a+version.1.4.13 = 27.2 58.8/33.1/20.8/13.5 (BP = 1.000 ratio = 1.015 hyp_len = 63650 ref_len = 62688)
+origin=en
+BLEU+case.mixed+lang.en-de+numrefs.1+origlang.en+smooth.exp+test.wmt14/full+tok.13a+version.1.4.13 = 25.8 58.2/31.9/19.7/12.5 (BP = 0.993 ratio = 0.993 hyp_len = 35512 ref_len = 35745)
+origin=de
+BLEU+case.mixed+lang.en-de+numrefs.1+origlang.non-en+smooth.exp+test.wmt14/full+tok.13a+version.1.4.13 = 28.8 59.7/34.5/22.3/14.9 (BP = 1.000 ratio = 1.044 hyp_len = 28138 ref_len = 26943)
+>>>token-bleu
+Namespace(ignore_case=False, order=4, ref='en-de.ref.tok', sacrebleu=False, sentence_bleu=False, sys='gen.out.sorted.tok')
+BLEU4 = 27.31, 59.2/33.2/20.8/13.5 (BP=1.000, ratio=1.005, syslen=63473, reflen=63131)
+>>>compound-bleu
+Namespace(ignore_case=False, order=4, ref='en-de.ref.tok.com', sacrebleu=False, sentence_bleu=False, sys='gen.out.sorted.tok.com')
+BLEU4 = 27.92, 59.8/33.8/21.4/14.0 (BP=1.000, ratio=1.005, syslen=64851, reflen=64549)
+```  
