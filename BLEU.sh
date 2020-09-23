@@ -28,19 +28,20 @@ sacrebleu -t $TESTSET -l $SRCLANG-$TGTLANG --echo ref > $SRCLANG-$TGTLANG.ref
 
 echo ">>>sacrebleu"
 cat $GEN.sorted.detok | sacrebleu -t $TESTSET -l $SRCLANG-$TGTLANG
-
+echo ""
 echo "origin=$SRCLANG"
 cat $GEN.sorted.detok | sacrebleu -t $TESTSET -l $SRCLANG-$TGTLANG --origlang=$SRCLANG 
-
+echo ""
 echo "origin=$TGTLANG"
 cat $GEN.sorted.detok | sacrebleu -t $TESTSET -l $SRCLANG-$TGTLANG --origlang=non-$SRCLANG 
 
-
+echo ""
 echo ">>>token-bleu"
 sacremoses tokenize <$GEN.sorted.detok> $GEN.sorted.tok
 sacremoses tokenize <$SRCLANG-$TGTLANG.ref> $SRCLANG-$TGTLANG.ref.tok
 fairseq-score -r $SRCLANG-$TGTLANG.ref.tok -s $GEN.sorted.tok
 
+echp ""
 echo ">>>compound-bleu"
 perl -ple 's{(\S)-(\S)}{$1 ##AT##-##AT## $2}g' <$GEN.sorted.tok> $GEN.sorted.tok.com
 perl -ple 's{(\S)-(\S)}{$1 ##AT##-##AT## $2}g' <$SRCLANG-$TGTLANG.ref.tok> $SRCLANG-$TGTLANG.ref.tok.com
